@@ -1,0 +1,15 @@
+<header class="border-b border-slate-200 bg-white">
+  <nav class="container mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-4">
+    <%= link_to t(".brand"), root_path, class: "text-xl font-bold text-violet-700" %>
+
+    <ul class="flex flex-wrap items-center gap-4 text-sm">
+      <% if signed_in? %>
+        <li><%= link_to t(".repositories"), repositories_path, class: "text-slate-700 hover:text-violet-700" %></li>
+        <li class="text-slate-500"><%= current_user.nickname || current_user.email %></li>
+        <li><%= button_to t(".sign_out"), session_path, method: :delete, class: "cursor-pointer text-slate-700 hover:text-violet-700" %></li>
+      <% else %>
+        <li><%= button_to t(".sign_in"), auth_request_path(:github), data: { turbo: false }, class: "cursor-pointer rounded bg-slate-900 px-3 py-2 font-medium text-white hover:bg-slate-700" %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,30 @@
+<% content_for :title, t(".title") %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-3xl font-bold"><%= t(".title") %></h1>
+  <%= link_to t(".add"), new_repository_path, class: "rounded bg-violet-700 px-3 py-2 text-sm font-medium text-white hover:bg-violet-600" %>
+</div>
+
+<div class="overflow-x-auto rounded-lg border border-slate-200 bg-white">
+  <table class="w-full text-left text-sm">
+    <thead class="bg-slate-100 text-slate-600">
+      <tr>
+        <th class="px-4 py-3"><%= Repository.human_attribute_name(:name) %></th>
+        <th class="px-4 py-3"><%= Repository.human_attribute_name(:language) %></th>
+        <th class="px-4 py-3"><%= t(".last_check") %></th>
+        <th class="px-4 py-3"><%= Repository.human_attribute_name(:created_at) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @repositories.each do |repository| %>
+        <% last_check = repository.checks.max_by(&:id) %>
+        <tr class="border-t border-slate-200">
+          <td class="px-4 py-3"><%= link_to repository.name.presence || "-", repository_path(repository), class: "font-medium hover:text-violet-700" %></td>
+          <td class="px-4 py-3"><%= repository.language_text %></td>
+          <td class="px-4 py-3"><%= last_check ? last_check.aasm.human_state : t(".no_checks") %></td>
+          <td class="px-4 py-3"><%= l(repository.created_at, format: :short) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

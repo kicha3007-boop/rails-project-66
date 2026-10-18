@@ -1,0 +1,11 @@
+one:
+  email: one@example.com
+  nickname: one
+  name: User One
+  token: token-one
+
+two:
+  email: two@example.com
+  nickname: two
+  name: User Two
+  token: token-two

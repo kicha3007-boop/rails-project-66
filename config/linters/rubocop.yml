@@ -1,0 +1,15 @@
+# Конфиг Rubocop для проверяемых репозиториев: стандартный набор правил, конфиги самого репозитория не используются
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "**/vendor/**/*"
+    - "**/node_modules/**/*"
+    - "**/db/schema.rb"
+    - "**/bin/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

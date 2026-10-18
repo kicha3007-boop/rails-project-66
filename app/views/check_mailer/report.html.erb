@@ -1,0 +1,6 @@
+<h1><%= t(".title", repository: @repository.full_name) %></h1>
+
+<p><%= t(".state", state: @check.aasm.human_state) %></p>
+<p><%= t(".offenses", count: @check.offenses_count) %></p>
+
+<p><%= link_to t(".details"), repository_check_url(@repository, @check) %></p>

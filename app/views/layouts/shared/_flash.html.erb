@@ -1,0 +1,4 @@
+<% flash.each do |type, message| %>
+  <% color = type.to_s == "notice" ? "border-green-200 bg-green-50 text-green-800" : "border-red-200 bg-red-50 text-red-800" %>
+  <div class="mb-6 rounded border px-4 py-3 text-sm <%= color %>" role="alert"><%= message %></div>
+<% end %>

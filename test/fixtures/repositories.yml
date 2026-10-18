@@ -1,0 +1,17 @@
+ruby:
+  name: hexlet-cv
+  github_id: 1296269
+  full_name: hexlet/hexlet-cv
+  language: ruby
+  clone_url: https://github.com/hexlet/hexlet-cv.git
+  ssh_url: git@github.com:hexlet/hexlet-cv.git
+  user: one
+
+javascript:
+  name: hexlet-js
+  github_id: 1296270
+  full_name: hexlet/hexlet-js
+  language: javascript
+  clone_url: https://github.com/hexlet/hexlet-js.git
+  ssh_url: git@github.com:hexlet/hexlet-js.git
+  user: one

@@ -33,6 +33,12 @@ module App
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
+    config.i18n.default_locale = :ru
+    config.i18n.available_locales = %i[ru en]
+
+    # Внешние ссылки (адрес вебхука для GitHub) строятся от BASE_URL
+    routes.default_url_options = { host: ENV.fetch("BASE_URL", "localhost:3000") }
+    config.action_mailer.default_url_options = { host: ENV.fetch("BASE_URL", "localhost:3000") }
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
   end

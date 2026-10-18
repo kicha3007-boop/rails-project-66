@@ -1,0 +1,7 @@
+finished:
+  repository: ruby
+  aasm_state: finished
+  commit_id: c0ffee0123456789abcdef0123456789abcdef01
+  passed: true
+  output: "[]"
+  offenses_count: 0

@@ -1,0 +1,100 @@
+ru:
+  activerecord:
+    models:
+      repository: Репозиторий
+      repository/check: Проверка
+      user: Пользователь
+    attributes:
+      repository:
+        name: Название
+        github_id: Репозиторий на GitHub
+        full_name: Полное имя
+        language: Язык
+        clone_url: Ссылка для клонирования (HTTPS)
+        ssh_url: Ссылка для клонирования (SSH)
+        created_at: Добавлен
+      repository/check:
+        aasm_state: Состояние
+        aasm_state/created: Создана
+        aasm_state/checking: Выполняется
+        aasm_state/finished: Завершена
+        aasm_state/failed: Не удалась
+        commit_id: Коммит
+        passed: Результат
+        offenses_count: Нарушений
+        created_at: Создана
+      user:
+        email: Email
+        nickname: Ник
+  enumerize:
+    repository:
+      language:
+        ruby: Ruby
+        javascript: JavaScript
+  layouts:
+    application:
+      title: Анализатор качества репозиториев
+      footer: "© %{year} Анализатор качества репозиториев — учебный проект Хекслета"
+    shared:
+      nav:
+        brand: Github Quality
+        repositories: Репозитории
+        sign_in: Войти с помощью Github
+        sign_out: Выйти
+  web:
+    flash:
+      authentication_required: Войдите, чтобы продолжить
+    home:
+      index:
+        title: Анализатор качества репозиториев
+        description: Подключите свои репозитории с GitHub и запускайте проверки кода линтерами. Сервис покажет текущее состояние кодовой базы и найденные ошибки.
+        features:
+          repositories: Репозитории на Ruby и JavaScript
+          checks: Проверки Rubocop и ESLint с подробным отчётом
+          webhooks: Автоматическая проверка после каждого push
+    auth:
+      callback:
+        success: Вы вошли в аккаунт
+    sessions:
+      destroy:
+        success: Вы вышли из аккаунта
+    repositories:
+      index:
+        title: Репозитории
+        add: Добавить
+        last_check: Последняя проверка
+        no_checks: Не проверялся
+      new:
+        title: Новый репозиторий
+        prompt: Выберите репозиторий
+        submit: Создать репозиторий
+      create:
+        success: Репозиторий добавлен
+        already_added: Репозиторий уже добавлен
+      show:
+        run_check: Проверить
+        checks: Проверки
+        passed: Без ошибок
+        not_passed: Есть ошибки
+      checks:
+        create:
+          success: Проверка запущена
+        show:
+          title: "Проверка #%{id}"
+          passed: Без ошибок
+          not_passed: Есть ошибки
+          file: Файл
+          line: Строка
+          rule: Правило
+          message: Сообщение
+  check_mailer:
+    report:
+      subject: "Проверка %{repository} не пройдена"
+      title: "Проверка репозитория %{repository} не пройдена"
+      state: "Состояние: %{state}"
+      offenses:
+        one: "Найдено %{count} нарушение"
+        few: "Найдено %{count} нарушения"
+        many: "Найдено %{count} нарушений"
+        other: "Найдено %{count} нарушения"
+      details: Подробнее о проверке

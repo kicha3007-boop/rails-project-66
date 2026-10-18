@@ -1,0 +1,40 @@
+<% content_for :title, @repository.full_name %>
+
+<div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+  <h1 class="text-3xl font-bold"><%= @repository.full_name %></h1>
+  <%= link_to t(".run_check"), repository_checks_path(@repository), data: { turbo_method: :post }, class: "rounded bg-violet-700 px-3 py-2 text-sm font-medium text-white hover:bg-violet-600" %>
+</div>
+
+<dl class="mb-8 grid gap-2 rounded-lg border border-slate-200 bg-white p-6 text-sm sm:grid-cols-2">
+  <div><dt class="text-slate-500"><%= Repository.human_attribute_name(:name) %></dt><dd><%= @repository.name %></dd></div>
+  <div><dt class="text-slate-500"><%= Repository.human_attribute_name(:language) %></dt><dd><%= @repository.language_text %></dd></div>
+  <div><dt class="text-slate-500"><%= Repository.human_attribute_name(:clone_url) %></dt><dd><%= @repository.clone_url %></dd></div>
+  <div><dt class="text-slate-500"><%= Repository.human_attribute_name(:ssh_url) %></dt><dd><%= @repository.ssh_url %></dd></div>
+</dl>
+
+<h2 class="mb-4 text-2xl font-semibold"><%= t(".checks") %></h2>
+
+<div class="overflow-x-auto rounded-lg border border-slate-200 bg-white">
+  <table class="w-full text-left text-sm">
+    <thead class="bg-slate-100 text-slate-600">
+      <tr>
+        <th class="px-4 py-3">#</th>
+        <th class="px-4 py-3"><%= Repository::Check.human_attribute_name(:aasm_state) %></th>
+        <th class="px-4 py-3"><%= Repository::Check.human_attribute_name(:commit_id) %></th>
+        <th class="px-4 py-3"><%= Repository::Check.human_attribute_name(:passed) %></th>
+        <th class="px-4 py-3"><%= Repository::Check.human_attribute_name(:created_at) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @checks.each do |check| %>
+        <tr class="border-t border-slate-200">
+          <td class="px-4 py-3"><%= link_to check.id, repository_check_path(@repository, check), class: "font-medium text-violet-700 hover:underline" %></td>
+          <td class="px-4 py-3"><%= check.aasm.human_state %></td>
+          <td class="px-4 py-3 font-mono"><%= check.commit_id&.first(7) %></td>
+          <td class="px-4 py-3"><%= t(check.passed? ? ".passed" : ".not_passed") %></td>
+          <td class="px-4 py-3"><%= l(check.created_at, format: :short) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

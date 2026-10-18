@@ -1,0 +1,20 @@
+<% content_for :title, t(".title") %>
+
+<h1 class="mb-6 text-3xl font-bold"><%= t(".title") %></h1>
+
+<%= form_with model: @repository, url: repositories_path, class: "space-y-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm" do |f| %>
+  <% if @repository.errors.any? %>
+    <ul class="rounded border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+      <% @repository.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :github_id, class: "mb-1 block font-medium" %>
+    <%= f.select :github_id, @github_repositories.map { |repo| [ repo[:full_name], repo[:id] ] }, { prompt: t(".prompt") }, class: "w-full rounded border border-slate-300 px-3 py-2" %>
+  </div>
+
+  <%= f.submit t(".submit"), class: "cursor-pointer rounded bg-violet-700 px-4 py-2 font-medium text-white hover:bg-violet-600" %>
+<% end %>

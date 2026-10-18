@@ -1,0 +1,8 @@
+{
+  "name": "rails-project-66",
+  "private": true,
+  "description": "Линтеры для проверяемых JavaScript-репозиториев",
+  "devDependencies": {
+    "eslint": "^9.39.0"
+  }
+}
